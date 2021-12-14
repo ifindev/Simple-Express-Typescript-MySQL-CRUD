@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>allowDataLocalInfile</key>
+			<integer>0</integer>
+			<key>database</key>
+			<string>dev</string>
+			<key>enableClearTextPlugin</key>
+			<integer>0</integer>
+			<key>host</key>
+			<string>localhost</string>
+			<key>kcid</key>
+			<string>2228553369059757948</string>
+			<key>name</key>
+			<string>todolist</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>dev</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {693, 474}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>CREATE TABLE IF NOT EXISTS tutorials (
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  description varchar(255),
+  published BOOLEAN DEFAULT false
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+SELECT * FROM tutorials
+
+SELECT 1 AS Number;
+
+INSERT INTO tutorials (title, description, published)
+values ('Fullstack Application with ReactJS and ExpressJS', 'Learning how to create a fullstack web application projet using ReactJS and ExpressJS', true)
+
+DECLARE title varchar(100);
+
+
+DELIMITER $$
+ 
+CREATE PROCEDURE SpGetTutorials
+(
+	 title VARCHAR(100),	
+	offsetNum INT,
+	limitNum INT,
+       statementType varchar(100)
+)
+BEGIN
+	IF StatementType = 'get_data' THEN
+	
+		SELECT * FROM tutorials WHERE
+		title LIKE CONCAT('%',title,'%')
+	
+		ORDER BY id
+		
+	   LIMIT limitNum OFFSET offsetNum;
+	   
+	ELSEIF statementType = 'get_count' THEN
+		SELECT COUNT(*) AS CountTut FROM tutorials WHERE
+		 title LIKE CONCAT('%',title,'%');
+	END IF;
+
+END$$
+
+DELIMITER ;
+
+
+CALL SpGetTutorials('tedsdsdsdst', 0, 15, 'get_data');
+
+
+SELECT COUNT(*) AS CounTut FROM tutorials
+WHERE title LIKE CONCAT('%','test','%');
+		
+		ORDER BY id
+		
+	   LIMIT 15 OFFSET 0;
+</string>
+			<key>table</key>
+			<string>SpInsertTutorial</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>192</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.26</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
