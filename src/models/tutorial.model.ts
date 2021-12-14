@@ -39,7 +39,7 @@ export default class Tutorial {
     })
   }
 
-  getAllPaginated = async (
+  getAllPaginated = (
     title: string,
     page: number
   ): Promise<[ITutorialResult[], OkPacket]> => {
@@ -60,7 +60,7 @@ export default class Tutorial {
     })
   }
 
-  getPaginatedFullCounts = async (
+  getPaginatedFullCounts = (
     title: string
   ): Promise<[{ Count: number }[], OkPacket]> => {
     const statementType = 'get_count'
