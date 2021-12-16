@@ -53,8 +53,6 @@ app.get('/tutorials', async (req: Request, res: Response) => {
     const data = await tutorial.getAllPaginated(title, page)
     const count = await tutorial.getPaginatedFullCounts(title)
 
-    console.log(count[0][0].Count)
-
     const response = {
       data: data[0],
       count: count[0][0].Count,
