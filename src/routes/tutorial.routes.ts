@@ -5,5 +5,6 @@ const tutorialRouter = express.Router()
 const tutorialController = new TutorialController()
 
 tutorialRouter.post('/', tutorialController.create)
+tutorialRouter.get('/', tutorialController.getAllPaginated)
 
 export { tutorialRouter }

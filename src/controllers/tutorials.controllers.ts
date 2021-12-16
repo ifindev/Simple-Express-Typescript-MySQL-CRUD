@@ -10,7 +10,7 @@ export default class TutorialController {
   create = async (req: Request, res: Response) => {
     if (isEmpty(req.body)) {
       res.status(400).send({
-        message: 'Content cannot be empty!',
+        message: 'Reqeust body cannot be empty!',
       })
     }
 
@@ -37,6 +37,39 @@ export default class TutorialController {
       res.status(400).send({
         message:
           'New tutorial must contain title, description, and published status',
+      })
+    }
+  }
+
+  getAllPaginated = async (req: Request, res: Response) => {
+    if (isEmpty(req.body)) {
+      res.status(400).send({
+        message: 'Reqeust body cannot be empty!',
+      })
+    }
+
+    const { page, title }: { page: number; title: string } = req.body
+
+    const tutorial = new Tutorial()
+
+    if (page !== undefined && page > 0 && title !== undefined) {
+      try {
+        const data = await tutorial.getAllPaginated(title, page)
+        const count = await tutorial.getPaginatedFullCounts(title)
+
+        const response = {
+          data: data[0],
+          count: count[0][0].Count,
+        }
+
+        res.status(200).json(response)
+      } catch (err) {
+        res.status(500).send(err)
+      }
+    } else {
+      res.status(400).send({
+        message:
+          'Failed getting the tutorials. Make sure page and title params are included in the request body. And page is larger than 0',
       })
     }
   }
