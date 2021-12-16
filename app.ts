@@ -2,17 +2,16 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
 
+// Constants
+import { constants } from './src/constants/constants'
+
 // Routes
 import { tutorialRouter } from './src/routes/routes'
 
 // Apps
 const app = express()
 
-var corsOptions = {
-  origin: 'http://localhost:8081, http://localhost:3000, http://localhost:3001',
-}
-
-app.use(cors(corsOptions))
+app.use(cors(constants.corsOptions))
 
 // parse requrests of content-type - application/json
 app.use(express.json())
