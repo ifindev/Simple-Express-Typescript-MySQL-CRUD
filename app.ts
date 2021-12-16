@@ -1,6 +1,5 @@
 // External Modules & Types
-import express, { Application, Request, Response } from 'express'
-import { Query, MysqlError } from 'mysql'
+import express, { Request, Response } from 'express'
 import cors from 'cors'
 
 // Internal Modules & Configs
@@ -9,6 +8,9 @@ import Tutorial from './src/models/tutorial.model'
 
 // Interfaces
 import { ITutorialResult } from './src/interfaces/tutorial'
+
+// Routes
+import { tutorialRouter } from './src/routes/routes'
 
 // Apps
 const app = express()
@@ -27,20 +29,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Homepage')
-})
-
-app.post('/tutorials', (req: Request, res: Response) => {
-  const tutorialId = 1
-
-  sql.query(
-    'SELECT * FROM tutorials WHERE id = ?',
-    [tutorialId],
-    (err, result: ITutorialResult[]) => {
-      if (err) throw err
-      console.log(result)
-    }
-  )
-  res.status(200).json({ message: 'Welcome to the application' })
 })
 
 app.get('/tutorials', async (req: Request, res: Response) => {
@@ -63,6 +51,8 @@ app.get('/tutorials', async (req: Request, res: Response) => {
     res.status(500).send(err)
   }
 })
+
+app.use('/tutorials', tutorialRouter)
 
 // require('./app/routes/tutorial.routes.js')(app)
 
