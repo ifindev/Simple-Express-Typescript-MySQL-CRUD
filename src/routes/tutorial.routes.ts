@@ -6,5 +6,6 @@ const tutorialController = new TutorialController()
 
 tutorialRouter.post('/', tutorialController.create)
 tutorialRouter.get('/', tutorialController.getAllPaginated)
+tutorialRouter.get('/:id', tutorialController.getTutorialById)
 
 export { tutorialRouter }

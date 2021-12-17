@@ -60,6 +60,7 @@ export default class TutorialController {
         const response = {
           data: data[0],
           count: count[0][0].Count,
+          status: 'Success',
         }
 
         res.status(200).json(response)
@@ -71,6 +72,28 @@ export default class TutorialController {
         message:
           'Failed getting the tutorials. Make sure page and title params are included in the request body. And page is larger than 0',
       })
+    }
+  }
+
+  getTutorialById = async (req: Request, res: Response) => {
+    const tutorial = new Tutorial()
+
+    const id: number = parseInt(req.params.id)
+
+    if (id) {
+      try {
+        const data = await tutorial.findById(id)
+
+        const response = {
+          data: data,
+          count: data.length,
+          status: 'Success',
+        }
+
+        res.status(200).json(response)
+      } catch (err) {
+        res.status(500).send(err)
+      }
     }
   }
 }
